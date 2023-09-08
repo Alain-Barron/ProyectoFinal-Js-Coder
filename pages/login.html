@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ingresá tu email, teléfono o usuario de Mercado Libre</title>
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/c52447f9f8.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header class="header-login">
+        <div class="logo-container">
+            <a href="../pages/login.html" class="logo-login">MercadoLibre</a>
+        </div>
+        <h1>MERCADOLIBRE</h1>
+    </header>
+    <main>
+        <section class="login-section">
+            <div class="login-border">
+                <div class="login-container">
+                    <h2 class="texto-login">Registrate en Mercado Libre</h2>
+                    <div class="input-container">
+                        <input type="text" placeholder="Nombre" class="input-field" id="nombre-id" />
+                    </div>
+
+                    <div class="input-container">
+                        <input type="text" placeholder="Apellido" class="input-field" id="apellido-id" />
+                    </div>
+                    <div class="input-container">
+                        <input type="email" placeholder="E-mail" class="input-field" id="email-id" />
+                    </div>
+                    <div class="input-container">
+                        <input type="password" placeholder="Ingrese contraseña" class="input-field"
+                            id="password-inicial-id" />
+                    </div>
+                    <div class="input-container">
+                        <input type="password" placeholder="Repetir contraseña" class="input-field"
+                            id="password-final-id" />
+                    </div>
+                    <div class="button-container">
+                        <button id="registrar" type="button" class="login-button">
+                            Registrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="condiciones-container" id="#mi-cuenta-id">
+                <h2 class="texto-login">Tene en cuenta esto</h2>
+                <p>* El nombre no debe contener numeros ni caracteres especiales.</p>
+                <p>* El apellido no debe contener numeros ni caracteres especiales.</p>
+                <p>
+                    * El e-mail debe tener el formato correcto. Ejemplo (mercadolibre@... .com)
+                </p>
+                <p>* Las contraseñas deben tener 8 caracteres o más y deben ser iguales.</p>
+                <div class="error-container">
+                    <p id="mensaje-error" class="mensaje-error">
+                        El nombre no debe contener números o caracteres especiales.
+                    </p>
+                    <p id="mensaje-error-apellido" class="mensaje-error">
+                        El apellido no debe contener números o caracteres especiales.
+                    </p>
+                    <p id="mensaje-error-email" class="mensaje-error">
+                        El email debe tener el formato correcto. (@)
+                    </p>
+                    <p id="mensaje-error-password" class="mensaje-error">
+                        Las contraseñas no son iguales o no tienen al menos 8 caracteres
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <script src="../login.js"></script>
+    </main>
+</body>
+
+</html>

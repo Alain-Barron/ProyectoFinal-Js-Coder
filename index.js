@@ -220,4 +220,14 @@ function crearTemplate() {
 
 crearTemplate();
 
+nombre = JSON.parse(localStorage.getItem("nombre-key"))
+
+const contenedorNombreCuenta = document.querySelector("#mi-cuenta-id")
+let nombreCuentaHTML = ""
+
+nombreCuentaHTML = `<a href="./pages/login.html" class="a-categorias"><i class="fa-regular fa-circle-user"></i>${nombre}</a>`;
+
+contenedorNombreCuenta.innerHTML =+ nombreCuentaHTML
+
+console.log(nombre)
 

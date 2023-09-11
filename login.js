@@ -55,9 +55,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         
         if (condicionesCumplidas) {
-        
-        contenedorMiCuenta.innerHTML = `<a href="./pages/login.html" class="a-categorias"><i class="fa-regular fa-circle-user"></i><p id="mi-cuenta-id">Registrate</p></a>`;
+    
         window.location.href = '../index.html';
+        localStorage.setItem("nombre-key", JSON.stringify(nombre))
+
     }
     });
 });
+

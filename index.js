@@ -4,69 +4,79 @@ let dbProductos= [
     // TECNOLOGIA
 
     {
-        id: "tecnologia",
+        categoria: "tecnologia",
         titulo: "Apple iPhone 13 (128 GB) - Azul medianoche",
         imagen: "../imgs/productos/tecnologia/iphone-13.webp",
         precio: 814999,
         idProducto: 1,
     },
     {
-        id: "tecnologia",
+        categoria: "tecnologia",
         titulo: "Samsung Galaxy S23 8gb 256gb Cream",
-        imagen: "./imgs/productos/tecnologia/samsung-s23.webp",
-        precio: 553999
+        imagen: "../imgs/productos/tecnologia/samsung-s23.webp",
+        precio: 553999,
+        idProducto: 2,
+        
     },
     {
-        id: "tecnologia",
+        categoria: "tecnologia",
         titulo: "Xiaomi Redmi Note 10 5G - Gris grafito - 128 GB - 4 GB",
-        imagen: "./imgs/productos/tecnologia/xiaomi-10.webp",
-        precio: 193899
+        imagen: "../imgs/productos/tecnologia/xiaomi-10.webp",
+        precio: 193899,
+        idProducto: 3,
     },
     {
-        id: "tecnologia",
+        categoria: "tecnologia",
         titulo: "Motorola Moto G22 - Cosmic black - 128 GB - 4 GB",
-        imagen: "./imgs/productos/tecnologia/moto-g20.webp",
-        precio: 162157
+        imagen: "../imgs/productos/tecnologia/moto-g20.webp",
+        precio: 162157,
+        idProducto: 4,
     },
     {
-        id: "tecnologia",
+        categoria: "tecnologia",
         titulo: "Celular Motorola Moto E13 64gb 2gb Ram Azul Turquesa",
-        imagen: "./imgs/productos/tecnologia/moto-e13.webp",
-        precio: 71999
+        imagen: "../imgs/productos/tecnologia/moto-e13.webp",
+        precio: 71999,
+        idProducto: 5,
     },
 
     // VEHICULOS 
     // VEHICULOS
 
     {
-        id: "vehiculos",
+        categoria: "vehiculos",
         titulo: "Chevrolet Cruze 1.4 Premier Sedan",
-        imagen: "./imgs/productos/vehiculos/1.webp",
-        precio: 14686900
+        imagen: "../imgs/productos/vehiculos/1.webp",
+        precio: 14686900,
+        idProducto: 6,
     },
     {
-        id: "vehiculos",
+        categoria: "vehiculos",
         titulo: "Fiat Pulse 1.0 Impetus T3 Cvt 0km Full",
-        imagen: "./imgs/productos/vehiculos/2.webp",
-        precio: 3000000
-    }, ,
+        imagen: "../imgs/productos/vehiculos/2.webp",
+        precio: 3000000,
+        idProducto: 7,
+    },
     {
-        id: "vehiculos",
+        categoria: "vehiculos",
         titulo: "Volkswagen Amarok 3.0 V6 Extreme",
-        imagen: "./imgs/productos/vehiculos/3.webp",
-        precio: 27850000
+        imagen: "../imgs/productos/vehiculos/3.webp",
+        precio: 27850000,
+        idProducto: 8,
     },
     {
-        id: "vehiculos",
+        categoria: "vehiculos",
         titulo: "Peugeot 208 1.6l Active Pack Tiptronic",
-        imagen: "./imgs/productos/vehiculos/4.webp",
-        precio: 10350000
+        imagen: "../imgs/productos/vehiculos/4.webp",
+        precio: 10350000,
+        idProducto: 9,
     },
     {
-        id: "vehiculos",
+        categoria: "vehiculos",
         titulo: "Nissan Sentra 2.0 Exclusive Mt Premium",
-        imagen: "./imgs/productos/vehiculos/5.webp",
-        precio: 21999999
+        imagen: "../imgs/productos/vehiculos/5.webp",
+        precio: 21999999,
+        idProducto: 10,
     },
 
 
@@ -74,107 +84,122 @@ let dbProductos= [
     // HERRAMIENTAS
 
     {
-        id: "herramientas",
+        categoria: "herramientas",
         titulo: "Maletín Portátil Set De Herramientas Lusqtoff 245 Pz",
-        imagen: "./imgs/productos/herramientas/1.webp",
-        precio: 103664
+        imagen: "../imgs/productos/herramientas/1.webp",
+        precio: 103664,
+        idProducto: 11,
     },
     {
-        id: "herramientas",
+        categoria: "herramientas",
         titulo: "Taladro Atornillador Inalambrico 2 Baterias 12v + Kit 32 Acc",
-        imagen: "./imgs/productos/herramientas/2.webp",
-        precio: 37900
+        imagen: "../imgs/productos/herramientas/2.webp",
+        precio: 37900,
+        idProducto: 12,
     },
     {
-        id: "herramientas",
+        categoria: "herramientas",
         titulo: "Soldadora Mig Alambre Flux Mascara Lusqtof Sml150",
-        imagen: "./imgs/productos/herramientas/3.webp",
-        precio: 97520
+        imagen: "../imgs/productos/herramientas/3.webp",
+        precio: 97520,
+        idProducto: 13,
     },
     {
-        id: "herramientas",
+        categoria: "herramientas",
         titulo: "Hidrolavadora eléctrica Gamma 100 Blue Line G2508AR",
-        imagen: "./imgs/productos/herramientas/4.webp",
-        precio: 33299
+        imagen: "../imgs/productos/herramientas/4.webp",
+        precio: 33299,
+        idProducto: 14,
     },
     {
-        id: "herramientas",
+        categoria: "herramientas",
         titulo: "Amoladora de banco Lüsqtoff AB-375 de 50 Hz 375 W 220 V",
-        imagen: "./imgs/productos/herramientas/5.webp",
-        precio: 27645
+        imagen: "../imgs/productos/herramientas/5.webp",
+        precio: 27645,
+        idProducto: 15,
     },
 
     // DEPORTES Y FITNESS
     // DEPORTES Y FITNESS
 
     {
-        id: "deportes",
+        categoria: "deportes",
         titulo: "Zapatillas Downshifter 12 Nike Oficial",
-        imagen: "./imgs/productos/deportes/1.webp",
-        precio: 45499
+        imagen: "../imgs/productos/deportes/1.webp",
+        precio: 45499,
+        idProducto: 16,
     },
     {
-        id: "deportes",
+        categoria: "deportes",
         titulo: "Short De Baño Slim Men Topper Azul",
-        imagen: "./imgs/productos/deportes/2.webp",
-        precio: 7842
+        imagen: "../imgs/productos/deportes/2.webp",
+        precio: 7842,
+        idProducto: 17,
     },
     {
-        id: "deportes",
+        categoria: "deportes",
         titulo: "Remera Termica Hombre Alpina Microfibra Dry Fit Manga Larga",
-        imagen: "./imgs/productos/deportes/3.webp",
-        precio: 5954
+        imagen: "../imgs/productos/deportes/3.webp",
+        precio: 5954,
+        idProducto: 18,
     },
     {
-        id: "deportes",
+        categoria: "deportes",
         titulo: "3 Whey 100% De Spx (3 De 1080gr) +una Creatina 300 Gr",
-        imagen: "./imgs/productos/deportes/4.webp",
-        precio: 16480
+        imagen: "../imgs/productos/deportes/4.webp",
+        precio: 16480,
+        idProducto: 19,
     },
     {
-        id: "deportes",
+        categoria: "deportes",
         titulo: "Kaddygolf Gorra Nike Hombre Legacy91 Tech Nueva Regulable",
-        imagen: "./imgs/productos/deportes/5.webp",
-        precio: 18000
+        imagen: "../imgs/productos/deportes/5.webp",
+        precio: 18000,
+        idProducto: 20,
     },
 
     // MODA 
     // MODA
 
     {
-        id: "moda",
+        categoria: "moda",
         titulo: "Canguro Dystopic Oversize De Algodon Mujer 47 Street",
-        imagen: "./imgs/productos/moda/1.webp",
-        precio: 44999
+        imagen: "../imgs/productos/moda/1.webp",
+        precio: 44999,
+        idProducto: 21,
     },
     {
-        id: "moda",
+        categoria: "moda",
         titulo: "Pantalones Hombre Cargo Bolsillos Casuales Jogger Alpina",
-        imagen: "./imgs/productos/moda/2.webp",
-        precio: 7872
+        imagen: "../imgs/productos/moda/2.webp",
+        precio: 7872,
+        idProducto: 22,
     },
     {
-        id: "moda",
+        categoria: "moda",
         titulo: "Remera 47 Drop De Algodon Mujer 47 Street",
-        imagen: "./imgs/productos/moda/3.webp",
-        precio: 18999
+        imagen: "../imgs/productos/moda/3.webp",
+        precio: 18999,
+        idProducto: 23,
     },
     {
-        id: "moda",
+        categoria: "moda",
         titulo: "Conjunto Topper Hombre Negro Melange",
-        imagen: "./imgs/productos/moda/4.webp",
-        precio: 31879
+        imagen: "../imgs/productos/moda/4.webp",
+        precio: 31879,
+        idProducto: 24,
     },
     {
-        id: "moda",
+        categoria: "moda",
         titulo: "Pantuflas Disney Mickey",
-        imagen: "./imgs/productos/moda/5.webp",
-        precio: 10800
+        imagen: "../imgs/productos/moda/5.webp",
+        precio: 10800,
+        idProducto: 25,
     },
 
 ]
 
-// localStorage.setItem("dbProductos-key", JSON.stringify(dbProductos))
+localStorage.setItem("dbProductos-key", JSON.stringify(dbProductos))
 
 
 
@@ -190,17 +215,17 @@ const categoriasContenedores = {
 
 function crearTemplate() {
     dbProductos.forEach((producto) => {
-        const { id, titulo, precio, imagen, idProducto } = producto;
+        const { categoria, titulo, precio, imagen, idProducto } = producto;
         let productoHTML = "";
 
-        switch (id) {
+        switch (categoria) {
             case "tecnologia":
             case "vehiculos":
             case "herramientas":
             case "deportes":
             case "moda":
 
-                const contenedorId = categoriasContenedores[id];
+                const contenedorId = categoriasContenedores[categoria];
                 const contenedor = document.querySelector(`#${contenedorId}`);
 
                 productoHTML = `

@@ -592,3 +592,10 @@ header{
     height: 100%;
     cursor: pointer;
 }
+
+.contenedor-padre-img{
+    width: 820px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

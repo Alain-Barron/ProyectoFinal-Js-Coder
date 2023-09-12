@@ -35,8 +35,8 @@ function renderizarProducto(producto){
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
-            <option value="3">4</option>
-            <option value="3">5</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
         </select>
     </form>
         </div>
@@ -53,4 +53,13 @@ function renderizarProducto(producto){
 document.addEventListener("DOMContentLoaded", () => {
     const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
     renderizarProducto(productoLS)
+    const selectCantidad = document.getElementById('cantidad');
+    
+selectCantidad.addEventListener('change', function() {
+    const selectedValue = selectCantidad.value;
+    console.log('Cantidad seleccionada:', selectedValue);
+    
+});
+
 })
+

@@ -6,8 +6,9 @@ let dbProductos= [
     {
         id: "tecnologia",
         titulo: "Apple iPhone 13 (128 GB) - Azul medianoche",
-        imagen: "./imgs/productos/tecnologia/iphone-13.webp",
-        precio: 814999
+        imagen: "../imgs/productos/tecnologia/iphone-13.webp",
+        precio: 814999,
+        idProducto: 1,
     },
     {
         id: "tecnologia",
@@ -189,7 +190,7 @@ const categoriasContenedores = {
 
 function crearTemplate() {
     dbProductos.forEach((producto) => {
-        const { id, titulo, precio, imagen } = producto;
+        const { id, titulo, precio, imagen, idProducto } = producto;
         let productoHTML = "";
 
         switch (id) {
@@ -203,13 +204,14 @@ function crearTemplate() {
                 const contenedor = document.querySelector(`#${contenedorId}`);
 
                 productoHTML = `
-                <a href="./pages/producto.html" class="link-producto">
-                    <div class="producto-card">
-                        <img src="${imagen}" alt="" class="producto-imagen">
-                        <h3 class="producto-precio">$${precio}</h3>
-                        <p class="producto-descripcion">${titulo}</p>
-                    </div>
-                </a>
+                <a class="link-producto" >
+                <div class="div-padre btnVer"  id="${idProducto}"></div>
+                <div class="producto-card">
+                    <img src="${imagen}" alt="" class="producto-imagen">
+                    <h3 class="producto-precio">$${precio}</h3>
+                    <p class="producto-descripcion">${titulo}</p>
+                </div>
+            </a>
                 `;
 
                 contenedor.innerHTML += productoHTML;
@@ -220,14 +222,32 @@ function crearTemplate() {
 
 crearTemplate();
 
-nombre = JSON.parse(localStorage.getItem("nombre-key"))
+document.addEventListener("click", (evento) => {
+    const btnVer = document.querySelectorAll(".btnVer")
+    btnVer.forEach((btn) => {
 
-const contenedorNombreCuenta = document.querySelector("#mi-cuenta-id")
-let nombreCuentaHTML = ""
+        if (evento.target == btn)
+        {
+            console.log("click")
+            const id = evento.target.id
+            const productoEncontrado = dbProductos.find((item) => item.idProducto == id)
+            localStorage.setItem("producto-encontrado-key", JSON.stringify(productoEncontrado))  
+            
+            window.location.href = "./pages/producto.html"
 
-nombreCuentaHTML = `<a href="./pages/login.html" class="a-categorias"><i class="fa-regular fa-circle-user"></i>${nombre}</a>`;
+        }
+    })
+})
 
-contenedorNombreCuenta.innerHTML =+ nombreCuentaHTML
 
-console.log(nombre)
+// nombre = JSON.parse(localStorage.getItem("nombre-key"))
+
+// const contenedorNombreCuenta = document.querySelector("#mi-cuenta-id")
+// let nombreCuentaHTML = ""
+
+// nombreCuentaHTML = `<a href="./pages/login.html" class="a-categorias"><i class="fa-regular fa-circle-user"></i>${nombre}</a>`;
+
+// contenedorNombreCuenta.innerHTML =+ nombreCuentaHTML
+
+// console.log(nombre)
 

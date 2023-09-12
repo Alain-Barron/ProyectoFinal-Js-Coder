@@ -8,7 +8,7 @@ function renderizarProducto(producto){
 
     <div class="contenedor-padre-img">
         <div class="imagen-container">
-            <img src="${imagen}" alt="${titulo}" class="img-class" id="producto-imagen">
+            <img src="${"."+imagen}" alt="${titulo}" class="img-class" id="producto-imagen">
         </div>
     </div>
     

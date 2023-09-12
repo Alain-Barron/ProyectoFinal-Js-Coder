@@ -29,7 +29,16 @@ function renderizarProducto(producto){
             <span class="green-span">Devolución gratis</span>
             <p class="p-devolucion">Tenés 30 días desde que lo recibís.</p>
             <p class="p-stock">Stock Disponible</p>
-            <p class="p-producto">Cantidad: 1 Unidad</p>
+            <form>
+        <label class="p-producto" for="cantidad">Cantidad:</label>
+        <select id="cantidad" name="cantidad">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="3">4</option>
+            <option value="3">5</option>
+        </select>
+    </form>
         </div>
         
         <div class="button-container">

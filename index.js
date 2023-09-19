@@ -213,6 +213,8 @@ const categoriasContenedores = {
     moda: "row-container-id-5"
 };
 
+
+
 function crearTemplate() {
     dbProductos.forEach((producto) => {
         const { categoria, titulo, precio, imagen, idProducto } = producto;
@@ -245,7 +247,11 @@ function crearTemplate() {
     });
 }
 
-crearTemplate();
+
+if(window.location.pathname.includes("index")){
+    crearTemplate();
+}
+
 
 document.addEventListener("click", (evento) => {
     const btnVer = document.querySelectorAll(".btnVer")
@@ -263,16 +269,3 @@ document.addEventListener("click", (evento) => {
         }
     })
 })
-
-
-// nombre = JSON.parse(localStorage.getItem("nombre-key"))
-
-// const contenedorNombreCuenta = document.querySelector("#mi-cuenta-id")
-// let nombreCuentaHTML = ""
-
-// nombreCuentaHTML = `<a href="./pages/login.html" class="a-categorias"><i class="fa-regular fa-circle-user"></i>${nombre}</a>`;
-
-// contenedorNombreCuenta.innerHTML =+ nombreCuentaHTML
-
-// console.log(nombre)
-

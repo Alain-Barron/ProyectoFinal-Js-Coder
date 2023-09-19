@@ -7,59 +7,65 @@ document.addEventListener('DOMContentLoaded', function () {
     let botonRegistrar = document.querySelector('#registrar');
     let formulario = document.querySelector('#login-container');
 
-    botonRegistrar.addEventListener('click', function () {
-        let nombre = document.querySelector('#nombre-id').value;
-        let apellido = document.querySelector('#apellido-id').value;
-        let mail = document.querySelector('#email-id').value;
-        let password1 = document.querySelector('#password-inicial-id').value;
-        let password2 = document.querySelector('#password-final-id').value;
-        console.log(nombre, apellido, mail, password1, password2);
-
-        function contieneNumeros(cadena) {
-            return /\d/.test(cadena);
-        }
-
-        function noContieneArroba(cadena) {
-            return !/@/.test(cadena);
-        }
-
-        let condicionesCumplidas = true;
-
-        if (contieneNumeros(nombre)) {
-            mensajeError.style.display = 'block';
-            condicionesCumplidas = false;
-        } else {
-            mensajeError.style.display = 'none';
-        }
-
-        if (contieneNumeros(apellido)) {
-            mensajeErrorApellido.style.display = 'block';
-            condicionesCumplidas = false;
-        } else {
-            mensajeErrorApellido.style.display = 'none';
-        }
-
-        if (noContieneArroba(mail)) {
-            mensajeErrorEmail.style.display = 'block';
-            condicionesCumplidas = false; 
-        } else {
-            mensajeErrorEmail.style.display = 'none';
-        }
-
-        if (password1.length >= 8 && password1 == password2) {
-            mensajeErrorPassword.style.display = 'none';
-        } else {
-            mensajeErrorPassword.style.display = 'block';
-            condicionesCumplidas = false; 
-        }
-
-        
-        if (condicionesCumplidas) {
+    if(window.location.pathname.includes("login"))
+    {
+        botonRegistrar.addEventListener('click', function () 
+        {
+            let nombre = document.querySelector('#nombre-id').value;
+            let apellido = document.querySelector('#apellido-id').value;
+            let mail = document.querySelector('#email-id').value;
+            let password1 = document.querySelector('#password-inicial-id').value;
+            let password2 = document.querySelector('#password-final-id').value;
+            console.log(nombre, apellido, mail, password1, password2);
     
-        window.location.href = '../index.html';
-        localStorage.setItem("nombre-key", JSON.stringify(nombre))
-
+            function contieneNumeros(cadena) {
+                return /\d/.test(cadena);
+            }
+    
+            function noContieneArroba(cadena) {
+                return !/@/.test(cadena);
+            }
+    
+            let condicionesCumplidas = true;
+    
+            if (contieneNumeros(nombre)) {
+                mensajeError.style.display = 'block';
+                condicionesCumplidas = false;
+            } else {
+                mensajeError.style.display = 'none';
+            }
+    
+            if (contieneNumeros(apellido)) {
+                mensajeErrorApellido.style.display = 'block';
+                condicionesCumplidas = false;
+            } else {
+                mensajeErrorApellido.style.display = 'none';
+            }
+    
+            if (noContieneArroba(mail)) {
+                mensajeErrorEmail.style.display = 'block';
+                condicionesCumplidas = false; 
+            } else {
+                mensajeErrorEmail.style.display = 'none';
+            }
+    
+            if (password1.length >= 8 && password1 == password2) {
+                mensajeErrorPassword.style.display = 'none';
+            } else {
+                mensajeErrorPassword.style.display = 'block';
+                condicionesCumplidas = false; 
+            }
+    
+            
+            if (condicionesCumplidas) {
+        
+            window.location.href = '../index.html';
+            localStorage.setItem("nombre-key", JSON.stringify(nombre))
+    
+        }
+        });
     }
-    });
+
+
 });
 

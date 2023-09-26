@@ -47,19 +47,34 @@ function renderizarProducto(producto){
     </div>
     
     </div>
-                `;
+`;
 }
 
+const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
+
 document.addEventListener("DOMContentLoaded", () => {
-    const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
     renderizarProducto(productoLS)
     const selectCantidad = document.getElementById('cantidad');
     
 selectCantidad.addEventListener('change', function() {
-    const selectedValue = selectCantidad.value;
-    console.log('Cantidad seleccionada:', selectedValue);
-    
+    const ValorSeleccionado = selectCantidad.value;
+    console.log('Cantidad seleccionada:', ValorSeleccionado);
 });
 
 })
+
+const productosEnCarrito = []
+
+function agregarAlCarrito(e){
+    productosEnCarrito.push(productoLS);
+    console.log("Producto agregado al carrito:", productoLS);
+    console.log(productosEnCarrito)
+}
+
+document.addEventListener("click", (evento) => {
+    const btnComprar = evento.target.closest(".button-container");
+    if (btnComprar) {
+        agregarAlCarrito();   
+    }
+});
 

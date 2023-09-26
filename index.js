@@ -202,9 +202,6 @@ let dbProductos= [
 localStorage.setItem("dbProductos-key", JSON.stringify(dbProductos))
 
 
-
-const carrito = []
-
 const categoriasContenedores = {
     tecnologia: "row-container-id-1",
     vehiculos: "row-container-id-2",

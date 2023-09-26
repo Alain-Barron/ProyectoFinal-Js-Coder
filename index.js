@@ -1,3 +1,7 @@
+document.addEventListener('DOMContentLoaded', function() {
+    Swal.fire('Primero registrate y crea un usuario.\n Podras hacerlo arriba a la derecha, en la barra de navegacion')
+});
+
 let dbProductos= [
 
     // TECNOLOGIA
@@ -216,6 +220,7 @@ const categoriasContenedores = {
 
 
 function crearTemplate() {
+    
     dbProductos.forEach((producto) => {
         const { categoria, titulo, precio, imagen, idProducto } = producto;
         let productoHTML = "";
@@ -247,12 +252,6 @@ function crearTemplate() {
     });
 }
 
-
-if(window.location.pathname.includes("index")){
-    crearTemplate();
-}
-
-
 document.addEventListener("click", (evento) => {
     const btnVer = document.querySelectorAll(".btnVer")
     btnVer.forEach((btn) => {
@@ -269,3 +268,20 @@ document.addEventListener("click", (evento) => {
         }
     })
 })
+
+if(window.location.pathname.includes("index")){
+    crearTemplate();
+}
+
+const MiCuentaContainers = document.querySelectorAll('p.miCuenta');
+const nombreCuenta = JSON.parse(localStorage.getItem("nombre-key"));
+
+if (nombreCuenta !== null && nombreCuenta !== undefined) {
+    MiCuentaContainers.forEach(function(miCuenta) {
+        miCuenta.innerHTML = nombreCuenta;
+    });
+} else {
+    MiCuentaContainers.forEach(function(miCuenta) {
+        miCuenta.innerHTML = "Registrate";
+    });
+}

@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
             window.location.href = '../index.html';
             localStorage.setItem("nombre-key", JSON.stringify(nombre))
-    
+            
         }
         });
     }

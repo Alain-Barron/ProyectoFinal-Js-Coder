@@ -632,3 +632,7 @@ header{
 .disabled{
     display: none;
 }
+
+.contenedorCarrito{
+    background-color: #fff;
+}

@@ -1,5 +1,7 @@
 const contenedorProductoEncontrado = document.querySelector("#contenedor-producto-encontrado-id");
 const contenedorLoader = document.querySelector('#loading-container-id')
+const carritoLogo = document.querySelector('#carrito-id')
+const contenedorCarrito = document.querySelector('#contenedor-carrito-id')
 
 function renderizarProducto(producto){
     const { id, titulo, precio, imagen, idProducto } = producto;
@@ -29,16 +31,7 @@ function renderizarProducto(producto){
             <span class="green-span">Devolución gratis</span>
             <p class="p-devolucion">Tenés 30 días desde que lo recibís.</p>
             <p class="p-stock">Stock Disponible</p>
-            <form>
-        <label class="p-producto" for="cantidad">Cantidad:</label>
-        <select id="cantidad" name="cantidad">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </form>
+            
         </div>
         
         <div class="button-container">
@@ -54,34 +47,30 @@ const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
 
 document.addEventListener("DOMContentLoaded", () => {
     renderizarProducto(productoLS)
-    const selectCantidad = document.getElementById('cantidad');
-selectCantidad.addEventListener('change', function() {
-    const ValorSeleccionado = selectCantidad.value;
-    console.log('Cantidad seleccionada:', ValorSeleccionado);
-});
-    
     contenedorLoader.classList.add("disabled")
 })
 
-const productosEnCarrito = []
 
-function agregarAlCarrito(e){
-    productosEnCarrito.push(productoLS);
-    console.log("Producto agregado al carrito:", productoLS);
-    console.log(productosEnCarrito)
-}
+
+// function agregarAlCarrito(e){
+//     productosEnCarrito.push(productoLS);
+//     console.log("Producto agregado al carrito:", productoLS);
+//     console.log(productosEnCarrito)
+// }
+
+
+let productosEnCarrito = []
 
 document.addEventListener("click", (evento) => {
     const btnComprar = evento.target.closest(".button-container");
     if (btnComprar) {
-        agregarAlCarrito();
-        contenedorLoader.classList.remove("disabled")
+        // agregarAlCarrito();
+        contenedorLoader.classList.remove("disabled");
         setTimeout(() => {
-            contenedorLoader.classList.add("disabled")
-        },1500)
+            contenedorLoader.classList.add("disabled");
+        }, 1500);
         // Retrasar la ejecución de agregarAlCarrito() por 2000 milisegundos (2 segundos)
         setTimeout(() => {
-            
             Toastify({
                 text: "Se agregó correctamente al carrito",
                 duration: 3000,
@@ -95,10 +84,34 @@ document.addEventListener("click", (evento) => {
                     background: "background-color: #3385ff;",
                 },
             }).showToast();
-        }, 2000); // 2000 milisegundos = 2 segundos
 
-        
+            const tituloProducto = document.getElementById('producto-titulo').textContent;
+            const precioProducto = document.getElementById('producto-precio').textContent;
+            console.log('Título del producto:', tituloProducto);
+
+            // Crear el objeto infoProduct con el título del producto
+            const infoProduct = {
+                cantidad: 1,
+                titulo: tituloProducto,
+                precio: precioProducto,
+            };
+            
+            productosEnCarrito = [...productosEnCarrito, infoProduct]
+            console.log(productosEnCarrito)
+
+        }, 2000); // 2000 milisegundos = 2 segundos
     }
 });
 
 
+carritoLogo.addEventListener('click', (evento) => {
+    evento.preventDefault();
+    // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
+    if (contenedorCarrito.style.display === 'none') {
+        contenedorCarrito.style.display = 'block';
+        // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
+        // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
+    } else {
+        contenedorCarrito.style.display = 'none';
+    }
+})

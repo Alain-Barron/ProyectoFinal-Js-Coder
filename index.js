@@ -1,3 +1,44 @@
+const CarritoConProductos = JSON.parse(localStorage.getItem("producto-en-carrito-key"))
+const infoProduct = JSON.parse(localStorage.getItem("infoProduct-key"))
+const totalcarrito = JSON.parse(localStorage.getItem("carrito-total-key"))
+const contenedorDeCarrito = document.querySelector('#contenedor-carrito-id')
+const carritoNumeroNav = document.querySelector('.carritoNumero')
+const carritoLogoNav = document.querySelector('#carrito-id')
+console.log(infoProduct)
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    RenderizarCarrito()
+})
+
+function RenderizarCarrito(){
+    contenedorDeCarrito.innerHTML = `
+    <div class="contenedorProductosCarrito">
+        <p>${infoProduct.titulo}</p>
+        <p>Precio: $${infoProduct.precio}</p>
+        <p>Cantidad: ${CarritoConProductos.length}</p>
+        <p>Total: $${totalcarrito}</p>
+    </div>
+    `
+    carritoNumeroNav.innerHTML = `
+    <p>${CarritoConProductos.length}</p>
+    `
+    carritoLogoNav.addEventListener('click', (evento) => {
+    
+        evento.preventDefault();
+        
+        // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
+        if (contenedorDeCarrito.style.display === 'none') {
+            contenedorDeCarrito.style.display = 'block';
+            // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
+            // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
+        } else {
+            contenedorDeCarrito.style.display = 'none';
+        }
+    })
+}
+
 let dbProductos= [
 
     // TECNOLOGIA
@@ -285,3 +326,4 @@ if (nombreCuenta !== null && nombreCuenta !== undefined) {
         miCuenta.innerHTML = "Registrate";
     });
 }
+

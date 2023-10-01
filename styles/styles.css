@@ -136,6 +136,8 @@ header{
 .carrito{
     padding-top: 12px;
     opacity: 0.7;
+    display: flex;
+    gap: 5px;
 }
 
 .img-carrusel{
@@ -633,6 +635,21 @@ header{
     display: none;
 }
 
-.contenedorCarrito{
+
+.carritoContainer{
+    margin-left: 1100px;
     background-color: #fff;
+    width: 600px;
+    position: absolute;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.25);
+}
+
+.contenedorProductosCarrito{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
 }

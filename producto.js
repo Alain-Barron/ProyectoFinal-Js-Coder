@@ -2,6 +2,7 @@ const contenedorProductoEncontrado = document.querySelector("#contenedor-product
 const contenedorLoader = document.querySelector('#loading-container-id')
 const carritoLogo = document.querySelector('#carrito-id')
 const contenedorCarrito = document.querySelector('#contenedor-carrito-id')
+const carritoNumero = document.querySelector('.carritoNumero')
 
 function renderizarProducto(producto){
     const { id, titulo, precio, imagen, idProducto } = producto;
@@ -51,6 +52,18 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 
+carritoLogo.addEventListener('click', (evento) => {
+    evento.preventDefault();
+    // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
+    if (contenedorCarrito.style.display === 'none') {
+        contenedorCarrito.style.display = 'block';
+        // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
+        // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
+    } else {
+        contenedorCarrito.style.display = 'none';
+    }
+})
+
 
 // function agregarAlCarrito(e){
 //     productosEnCarrito.push(productoLS);
@@ -58,8 +71,8 @@ document.addEventListener("DOMContentLoaded", () => {
 //     console.log(productosEnCarrito)
 // }
 
-
 let productosEnCarrito = []
+let total = 0
 
 document.addEventListener("click", (evento) => {
     const btnComprar = evento.target.closest(".button-container");
@@ -87,17 +100,38 @@ document.addEventListener("click", (evento) => {
 
             const tituloProducto = document.getElementById('producto-titulo').textContent;
             const precioProducto = document.getElementById('producto-precio').textContent;
+            const precioFinalFormateado = precioProducto.replace("$", "")
             console.log('Título del producto:', tituloProducto);
 
             // Crear el objeto infoProduct con el título del producto
             const infoProduct = {
                 cantidad: 1,
                 titulo: tituloProducto,
-                precio: precioProducto,
+                precio: productoLS.precio,
             };
             
             productosEnCarrito = [...productosEnCarrito, infoProduct]
+            
+            total = (productosEnCarrito.length * infoProduct.precio)
+            console.log(total)
+
+
+            contenedorCarrito.innerHTML = `
+            <div class="contenedorProductosCarrito">
+                <p>${infoProduct.titulo}</p>
+                <p>Precio: $${(infoProduct.precio.toLocaleString('es-ES'))}</p>
+                <p>Cantidad: ${productosEnCarrito.length}</p>
+                <p>Total: $${total.toLocaleString('es-ES')}</p>
+            </div>
+            `
+            carritoNumero.innerHTML = `
+            <p>${productosEnCarrito.length}</p>
+            `
             console.log(productosEnCarrito)
+
+            localStorage.setItem("infoProduct-key", JSON.stringify(infoProduct))
+            localStorage.setItem("producto-en-carrito-key", JSON.stringify(productosEnCarrito))
+            localStorage.setItem("carrito-total-key", JSON.stringify(total))
 
         }, 2000); // 2000 milisegundos = 2 segundos
     }
@@ -105,6 +139,7 @@ document.addEventListener("click", (evento) => {
 
 
 carritoLogo.addEventListener('click', (evento) => {
+    
     evento.preventDefault();
     // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
     if (contenedorCarrito.style.display === 'none') {

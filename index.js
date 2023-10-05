@@ -403,11 +403,14 @@ if(window.location.pathname.includes("index")){
     crearTemplate();
 }
 
-if (localStorage.getItem("nombre-key") !== null) {
+if(window.location.pathname.includes("index")){
+    if (localStorage.getItem("nombre-key") !== null) {
 
-} else {
-    Swal.fire('Primero registrate y crea un usuario.\n Podras hacerlo arriba a la derecha, en la barra de navegacion');
+    } else {
+        Swal.fire('Primero registrate y crea un usuario.\n Podras hacerlo arriba a la derecha, en la barra de navegacion');
+    }
 }
+
 
 
 const MiCuentaContainers = document.querySelectorAll('p.miCuenta');

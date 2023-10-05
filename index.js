@@ -403,7 +403,7 @@ if(window.location.pathname.includes("index")){
     crearTemplate();
 }
 
-if(window.location.pathname.includes("index")){
+if(window.location.href === 'https://proyecto-final-js-coder.vercel.app/'){
     if (localStorage.getItem("nombre-key") !== null) {
 
     } else {

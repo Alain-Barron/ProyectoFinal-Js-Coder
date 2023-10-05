@@ -38,6 +38,7 @@ window.addEventListener('load', () => {
 
     if (storedProductosEnCarrito) {
         productosEnCarrito = storedProductosEnCarrito;
+        RenderizarCarrito();
     }
 
     if (storedTotal) {
@@ -45,7 +46,7 @@ window.addEventListener('load', () => {
     }
 
     // Luego, puedes llamar a la función para renderizar el carrito con los datos existentes.
-    RenderizarCarrito();
+
     
 });
 

@@ -2,28 +2,70 @@ const CarritoConProductos = JSON.parse(localStorage.getItem("producto-en-carrito
 const infoProduct = JSON.parse(localStorage.getItem("infoProduct-key"))
 const totalcarrito = JSON.parse(localStorage.getItem("carrito-total-key"))
 const contenedorDeCarrito = document.querySelector('#contenedor-carrito-id')
-const carritoNumeroNav = document.querySelector('.carritoNumero')
+const carritoNumeroNav = document.querySelector('#carritoNumero')
 const carritoLogoNav = document.querySelector('#carrito-id')
+
+
 console.log(infoProduct)
 
+function RenderizarCarrito() {
+    // Limpiar el contenido del contenedor
+    contenedorDeCarrito.innerHTML = '';
+
+    // Iterar sobre la lista de productos en el carrito
+    productosEnCarrito.forEach((producto) => {
+        contenedorDeCarrito.innerHTML += `
+            <div class="contenedorProductosCarrito">
+                <p>${producto.titulo}</p>
+                <p>Precio: $${producto.precio}</p>
+                <p>Cantidad: 1</p> <!-- Esto puede variar según tu lógica -->
+                <p>Total: $${producto.precio}</p>
+            </div>
+        `;
+    });
+
+    // Actualizar el número de productos en el carrito
+    if(window.location.pathname.includes("index")){
+        carritoNumeroNav.innerHTML = productosEnCarrito.length;
+    }
+
+}
+// Al cargar la página
+window.addEventListener('load', () => {
+    // Recuperar datos del localStorage si existen
+    const storedProductosEnCarrito = JSON.parse(localStorage.getItem("producto-en-carrito-key"));
+    const storedTotal = JSON.parse(localStorage.getItem("carrito-total-key"));
+
+    if (storedProductosEnCarrito) {
+        productosEnCarrito = storedProductosEnCarrito;
+    }
+
+    if (storedTotal) {
+        total = storedTotal;
+    }
+
+    // Luego, puedes llamar a la función para renderizar el carrito con los datos existentes.
+    RenderizarCarrito();
+    
+});
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    RenderizarCarrito()
-})
 
-function RenderizarCarrito(){
-    contenedorDeCarrito.innerHTML = `
-    <div class="contenedorProductosCarrito">
-        <p>${infoProduct.titulo}</p>
-        <p>Precio: $${infoProduct.precio}</p>
-        <p>Cantidad: ${CarritoConProductos.length}</p>
-        <p>Total: $${totalcarrito}</p>
-    </div>
-    `
-    carritoNumeroNav.innerHTML = `
-    <p>${CarritoConProductos.length}</p>
-    `
+function AgregarProductoAlCarrito(producto) {
+    // Agrega el producto a la lista existente
+    productosEnCarrito.push(producto);
+    
+    // Actualiza el total del carrito
+    total += producto.precio;
+
+    // Actualiza el localStorage
+    localStorage.setItem("producto-en-carrito-key", JSON.stringify(productosEnCarrito));
+    localStorage.setItem("carrito-total-key", JSON.stringify(total));
+
+    // Llama a la función para renderizar el carrito
+    RenderizarCarrito();
+}
+if(window.location.pathname.includes("index")){
     carritoLogoNav.addEventListener('click', (evento) => {
     
         evento.preventDefault();
@@ -38,6 +80,59 @@ function RenderizarCarrito(){
         }
     })
 }
+
+
+
+
+// Función para limpiar el carrito
+function LimpiarCarrito() {
+    // Vaciar el arreglo de productos en el carrito
+    productosEnCarrito = [];
+    
+    // Resetear el total del carrito a 0
+    total = 0;
+
+    // Actualizar el localStorage
+    localStorage.setItem("producto-en-carrito-key", JSON.stringify(productosEnCarrito));
+    localStorage.setItem("carrito-total-key", JSON.stringify(total));
+
+    // Volver a renderizar el carrito (puede ser opcional dependiendo de tu diseño)
+    RenderizarCarrito();
+}
+
+
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//     RenderizarCarrito()
+// })
+
+// function RenderizarCarrito(){
+//     contenedorDeCarrito.innerHTML = `
+//     <div class="contenedorProductosCarrito">
+//         <p>${infoProduct.titulo}</p>
+//         <p>Precio: $${infoProduct.precio}</p>
+//         <p>Cantidad: ${CarritoConProductos.length}</p>
+//         <p>Total: $${totalcarrito}</p>
+//     </div>
+//     `
+//     carritoNumeroNav.innerHTML = `
+//     <p>${CarritoConProductos.length}</p>
+//     `
+//     carritoLogoNav.addEventListener('click', (evento) => {
+    
+//         evento.preventDefault();
+        
+//         // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
+//         if (contenedorDeCarrito.style.display === 'none') {
+//             contenedorDeCarrito.style.display = 'block';
+//             // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
+//             // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
+//         } else {
+//             contenedorDeCarrito.style.display = 'none';
+//         }
+//     })
+// }
 
 let dbProductos= [
 
@@ -327,3 +422,7 @@ if (nombreCuenta !== null && nombreCuenta !== undefined) {
     });
 }
 
+const limpiarCarritoBtn = document.getElementById('limpiarCarritoBtn');
+if(window.location.pathname.includes("index")){
+    limpiarCarritoBtn.addEventListener('click', LimpiarCarrito);
+}

@@ -653,3 +653,21 @@ header{
     gap: 30px;
     width: 100%;
 }
+
+
+#paypal-button-container{
+    margin-left: 1270px;
+    width: 100px;
+    margin-top: -250px;
+}
+
+.eliminar-carrito{
+    background-color: transparent;
+    border: 0;
+    padding-bottom: 100px;
+    margin-left: 10px;
+}
+
+.eliminar-carrito:focus{
+    outline: 0;
+}

@@ -4,6 +4,7 @@ const carritoLogo = document.querySelector('#carrito-id')
 const contenedorCarrito = document.querySelector('#contenedor-carrito-id')
 const carritoNumero = document.querySelector('.carritoNumero')
 
+
 function renderizarProducto(producto){
     const { id, titulo, precio, imagen, idProducto } = producto;
     contenedorProductoEncontrado.innerHTML = `
@@ -38,6 +39,9 @@ function renderizarProducto(producto){
         <div class="button-container">
             <button type="submit" class="andes-button andes-spinner__icon-base ui-pdp-action--primary andes-button--loud" id=":Rll8b6c5:" aria-disabled="false" formaction="https://www.mercadolibre.com.ar/gz/checkout/buy"><span class="andes-button__content">Comprar ahora</span></button>
         </div>
+        <div id="paypal-button-container"></div>
+
+        <script src="https://www.paypal.com/sdk/js?client-id=AYiQSIhe7Fh_XwhIWD5vhv5EgF7SO7pj-XsyYCaLxQR6ShZk_myQCLyAV-6br_U3vDmRHaC6xP0SknXm"></script>
     </div>
     
     </div>
@@ -49,20 +53,11 @@ const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
 document.addEventListener("DOMContentLoaded", () => {
     renderizarProducto(productoLS)
     contenedorLoader.classList.add("disabled")
+    
 })
 
+const precioDOM = productoLS.precio
 
-carritoLogo.addEventListener('click', (evento) => {
-    evento.preventDefault();
-    // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
-    if (contenedorCarrito.style.display === 'none') {
-        contenedorCarrito.style.display = 'block';
-        // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
-        // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
-    } else {
-        contenedorCarrito.style.display = 'none';
-    }
-})
 
 
 // function agregarAlCarrito(e){
@@ -124,9 +119,7 @@ document.addEventListener("click", (evento) => {
                 <p>Total: $${total.toLocaleString('es-ES')}</p>
             </div>
             `
-            carritoNumero.innerHTML = `
-            <p>${productosEnCarrito.length}</p>
-            `
+            
             console.log(productosEnCarrito)
 
             localStorage.setItem("infoProduct-key", JSON.stringify(infoProduct))
@@ -137,16 +130,24 @@ document.addEventListener("click", (evento) => {
     }
 });
 
-
-carritoLogo.addEventListener('click', (evento) => {
-    
-    evento.preventDefault();
-    // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
-    if (contenedorCarrito.style.display === 'none') {
-        contenedorCarrito.style.display = 'block';
-        // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
-        // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
-    } else {
-        contenedorCarrito.style.display = 'none';
+// Configura la integración de PayPal
+paypal.Buttons({
+    createOrder: function(data, actions) {
+        // Configura el pedido y la cantidad a pagar
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: precioDOM
+                }
+            }]
+        });
+    },
+    onApprove: function(data, actions) {
+        // Captura la aprobación del pago y muestra un mensaje
+        return actions.order.capture().then(function(details) {
+            alert('Pago completado por ' + details.payer.name.given_name);
+            
+        });
     }
-})
+}).render('#paypal-button-container');
+

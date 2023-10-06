@@ -5,14 +5,14 @@ const contenedorCarrito = document.querySelector('#contenedor-carrito-id')
 const carritoNumero = document.querySelector('.carritoNumero')
 
 
-function renderizarProducto(producto){
+function renderizarProducto(producto) {
     const { id, titulo, precio, imagen, idProducto } = producto;
     contenedorProductoEncontrado.innerHTML = `
     <div class="main-div-container">
 
     <div class="contenedor-padre-img">
         <div class="imagen-container">
-            <img src="${"."+imagen}" alt="${titulo}" class="img-class" id="producto-imagen">
+            <img src="${"." + imagen}" alt="${titulo}" class="img-class" id="producto-imagen">
         </div>
     </div>
     
@@ -24,7 +24,7 @@ function renderizarProducto(producto){
             <h2 class="h2-precio-producto" id="producto-precio">$${(precio.toLocaleString('es-ES'))}</h2>
     
     
-            <h2 class="h2-cuotas-producto"> en 12x $${(precio/12).toLocaleString('es-ES')}</h2>
+            <h2 class="h2-cuotas-producto"> en 12x $${(precio / 12).toLocaleString('es-ES')}</h2>
     
         </div>
     
@@ -53,18 +53,11 @@ const productoLS = JSON.parse(localStorage.getItem("producto-encontrado-key"))
 document.addEventListener("DOMContentLoaded", () => {
     renderizarProducto(productoLS)
     contenedorLoader.classList.add("disabled")
-    
+
 })
 
 const precioDOM = productoLS.precio
 
-
-
-// function agregarAlCarrito(e){
-//     productosEnCarrito.push(productoLS);
-//     console.log("Producto agregado al carrito:", productoLS);
-//     console.log(productosEnCarrito)
-// }
 
 let productosEnCarrito = []
 let total = 0
@@ -77,7 +70,7 @@ document.addEventListener("click", (evento) => {
         setTimeout(() => {
             contenedorLoader.classList.add("disabled");
         }, 1500);
-        // Retrasar la ejecución de agregarAlCarrito() por 2000 milisegundos (2 segundos)
+        // Retrasa la ejecución de agregarAlCarrito() por 2000 milisegundos (2 segundos)
         setTimeout(() => {
             Toastify({
                 text: "Se agregó correctamente al carrito",
@@ -96,19 +89,18 @@ document.addEventListener("click", (evento) => {
             const tituloProducto = document.getElementById('producto-titulo').textContent;
             const precioProducto = document.getElementById('producto-precio').textContent;
             const precioFinalFormateado = precioProducto.replace("$", "")
-            console.log('Título del producto:', tituloProducto);
 
-            // Crear el objeto infoProduct con el título del producto
+
+            // Crea el objeto infoProduct con el título del producto
             const infoProduct = {
                 cantidad: 1,
                 titulo: tituloProducto,
                 precio: productoLS.precio,
             };
-            
+
             productosEnCarrito = [...productosEnCarrito, infoProduct]
-            
+
             total = (productosEnCarrito.length * infoProduct.precio)
-            console.log(total)
 
 
             contenedorCarrito.innerHTML = `
@@ -119,8 +111,6 @@ document.addEventListener("click", (evento) => {
                 <p>Total: $${total.toLocaleString('es-ES')}</p>
             </div>
             `
-            
-            console.log(productosEnCarrito)
 
             localStorage.setItem("infoProduct-key", JSON.stringify(infoProduct))
             localStorage.setItem("producto-en-carrito-key", JSON.stringify(productosEnCarrito))
@@ -130,9 +120,9 @@ document.addEventListener("click", (evento) => {
     }
 });
 
-// Configura la integración de PayPal
+// Configuracion de la API de PayPal
 paypal.Buttons({
-    createOrder: function(data, actions) {
+    createOrder: function (data, actions) {
         // Configura el pedido y la cantidad a pagar
         return actions.order.create({
             purchase_units: [{
@@ -142,11 +132,11 @@ paypal.Buttons({
             }]
         });
     },
-    onApprove: function(data, actions) {
+    onApprove: function (data, actions) {
         // Captura la aprobación del pago y muestra un mensaje
-        return actions.order.capture().then(function(details) {
+        return actions.order.capture().then(function (details) {
             alert('Pago completado por ' + details.payer.name.given_name);
-            
+
         });
     }
 }).render('#paypal-button-container');

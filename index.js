@@ -5,14 +5,11 @@ const contenedorDeCarrito = document.querySelector('#contenedor-carrito-id')
 const carritoNumeroNav = document.querySelector('#carritoNumero')
 const carritoLogoNav = document.querySelector('#carrito-id')
 
-
-console.log(infoProduct)
-
 function RenderizarCarrito() {
-    // Limpiar el contenido del contenedor
+    // Limpia el contenido del contenedor del carrito
     contenedorDeCarrito.innerHTML = '';
 
-    // Iterar sobre la lista de productos en el carrito
+    // Itera sobre la lista de productos en el carrito
     productosEnCarrito.forEach((producto) => {
         contenedorDeCarrito.innerHTML += `
             <div class="contenedorProductosCarrito">
@@ -24,15 +21,17 @@ function RenderizarCarrito() {
         `;
     });
 
-    // Actualizar el número de productos en el carrito
-    if(window.location.pathname.includes("index")){
+    // Actualiza el número de productos en el carrito
+    if (window.location.pathname.includes("index")) {
         carritoNumeroNav.innerHTML = productosEnCarrito.length;
     }
 
 }
+
+
 // Al cargar la página
 window.addEventListener('load', () => {
-    // Recuperar datos del localStorage si existen
+    // Recupera datos del localStorage si existen
     const storedProductosEnCarrito = JSON.parse(localStorage.getItem("producto-en-carrito-key"));
     const storedTotal = JSON.parse(localStorage.getItem("carrito-total-key"));
 
@@ -45,9 +44,6 @@ window.addEventListener('load', () => {
         total = storedTotal;
     }
 
-    // Luego, puedes llamar a la función para renderizar el carrito con los datos existentes.
-
-    
 });
 
 
@@ -55,7 +51,7 @@ window.addEventListener('load', () => {
 function AgregarProductoAlCarrito(producto) {
     // Agrega el producto a la lista existente
     productosEnCarrito.push(producto);
-    
+
     // Actualiza el total del carrito
     total += producto.precio;
 
@@ -66,16 +62,14 @@ function AgregarProductoAlCarrito(producto) {
     // Llama a la función para renderizar el carrito
     RenderizarCarrito();
 }
-if(window.location.pathname.includes("index")){
+if (window.location.pathname.includes("index")) {
     carritoLogoNav.addEventListener('click', (evento) => {
-    
+
         evento.preventDefault();
-        
-        // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
+
+        // Si el contenedor del carrito está oculto, lo muestra, sino lo oculta
         if (contenedorDeCarrito.style.display === 'none') {
             contenedorDeCarrito.style.display = 'block';
-            // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
-            // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
         } else {
             contenedorDeCarrito.style.display = 'none';
         }
@@ -87,55 +81,25 @@ if(window.location.pathname.includes("index")){
 
 // Función para limpiar el carrito
 function LimpiarCarrito() {
-    // Vaciar el arreglo de productos en el carrito
+    // Vacia el arreglo de productos en el carrito
     productosEnCarrito = [];
-    
-    // Resetear el total del carrito a 0
+
+    // Resetea el total del carrito a 0
     total = 0;
 
-    // Actualizar el localStorage
+    // Actualiza el localStorage
     localStorage.setItem("producto-en-carrito-key", JSON.stringify(productosEnCarrito));
     localStorage.setItem("carrito-total-key", JSON.stringify(total));
 
-    // Volver a renderizar el carrito (puede ser opcional dependiendo de tu diseño)
+    // Vuelve a Renderizar el carrito
     RenderizarCarrito();
 }
 
 
 
+// PRODUCTOS
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     RenderizarCarrito()
-// })
-
-// function RenderizarCarrito(){
-//     contenedorDeCarrito.innerHTML = `
-//     <div class="contenedorProductosCarrito">
-//         <p>${infoProduct.titulo}</p>
-//         <p>Precio: $${infoProduct.precio}</p>
-//         <p>Cantidad: ${CarritoConProductos.length}</p>
-//         <p>Total: $${totalcarrito}</p>
-//     </div>
-//     `
-//     carritoNumeroNav.innerHTML = `
-//     <p>${CarritoConProductos.length}</p>
-//     `
-//     carritoLogoNav.addEventListener('click', (evento) => {
-    
-//         evento.preventDefault();
-        
-//         // Si el contenedor del carrito está oculto, muéstralo; de lo contrario, ocúltalo
-//         if (contenedorDeCarrito.style.display === 'none') {
-//             contenedorDeCarrito.style.display = 'block';
-//             // Aquí puedes agregar lógica para cargar y mostrar los productos del carrito
-//             // Puedes usar AJAX para obtener los datos del carrito y mostrarlos en el contenedor
-//         } else {
-//             contenedorDeCarrito.style.display = 'none';
-//         }
-//     })
-// }
-
-let dbProductos= [
+let dbProductos = [
 
     // TECNOLOGIA
     // TECNOLOGIA
@@ -153,7 +117,7 @@ let dbProductos= [
         imagen: "./imgs/productos/tecnologia/samsung-s23.webp",
         precio: 553999,
         idProducto: 2,
-        
+
     },
     {
         categoria: "tecnologia",
@@ -336,6 +300,7 @@ let dbProductos= [
 
 ]
 
+// Manda al localstorage la DB PRODUCTOS en .JSON
 localStorage.setItem("dbProductos-key", JSON.stringify(dbProductos))
 
 
@@ -348,9 +313,9 @@ const categoriasContenedores = {
 };
 
 
-
+// Funcion que crea la carga de los articulos
 function crearTemplate() {
-    
+
     dbProductos.forEach((producto) => {
         const { categoria, titulo, precio, imagen, idProducto } = producto;
         let productoHTML = "";
@@ -382,28 +347,33 @@ function crearTemplate() {
     });
 }
 
+
+// Evento para redirigir a la pagina especifica del producto seleccionado
 document.addEventListener("click", (evento) => {
     const btnVer = document.querySelectorAll(".btnVer")
     btnVer.forEach((btn) => {
 
-        if (evento.target == btn)
-        {
-            console.log("click")
+        if (evento.target == btn) {
             const id = evento.target.id
             const productoEncontrado = dbProductos.find((item) => item.idProducto == id)
-            localStorage.setItem("producto-encontrado-key", JSON.stringify(productoEncontrado))  
-            
+
+            // Manda al local-storage el producto encontrado para luego sacar la informacion en producto.js
+            localStorage.setItem("producto-encontrado-key", JSON.stringify(productoEncontrado))
+
             window.location.href = "./pages/producto.html"
 
         }
     })
 })
 
-if(window.location.pathname.includes("index")){
+// Se coloca esto para que en otras pestañas no salga un error, y nos aseguremos de que esta ejecutando este codigo cuando este solo en el index.
+if (window.location.pathname.includes("index")) {
     crearTemplate();
 }
 
-if(window.location.href === 'https://proyecto-final-js-coder.vercel.app/'){
+
+// Verifica que si estas en la pagina, y no has asignado nunca un nombre, te muestre un cartel
+if (window.location.href === 'https://proyecto-final-js-coder.vercel.app/') {
     if (localStorage.getItem("nombre-key") !== null) {
 
     } else {
@@ -411,22 +381,24 @@ if(window.location.href === 'https://proyecto-final-js-coder.vercel.app/'){
     }
 }
 
-
+// Logica para hacer mostrar, el nombre que introdujimos en el login, en la pagina principal
 
 const MiCuentaContainers = document.querySelectorAll('p.miCuenta');
 const nombreCuenta = JSON.parse(localStorage.getItem("nombre-key"));
 
 if (nombreCuenta !== null && nombreCuenta !== undefined) {
-    MiCuentaContainers.forEach(function(miCuenta) {
+    MiCuentaContainers.forEach(function (miCuenta) {
         miCuenta.innerHTML = nombreCuenta;
     });
 } else {
-    MiCuentaContainers.forEach(function(miCuenta) {
+    MiCuentaContainers.forEach(function (miCuenta) {
         miCuenta.innerHTML = "Registrate";
     });
 }
 
+
+// Eventos para limpiar el carrito
 const limpiarCarritoBtn = document.getElementById('limpiarCarritoBtn');
-if(window.location.pathname.includes("index")){
+if (window.location.pathname.includes("index")) {
     limpiarCarritoBtn.addEventListener('click', LimpiarCarrito);
 }
